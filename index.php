@@ -34,6 +34,9 @@
 				top: 0;
 				left: 0;
 			}
+			.table {
+				margin: 0px;
+			}
 		</style>
 		<title>Exploring The Stranger</title>
 	</head>
@@ -47,7 +50,25 @@
 				</div>
 			</div>
 			<br>
-			<p>Use the mouse to look around!</p>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td colspan="2">
+							<h1>Bullet Scene</h1>
+						</td>
+					<tr>
+						<td colspan="2">Use the mouse to look around</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-primary">Back</button>
+						</td>
+						<td>
+							<button class="btn btn-primary">Next</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<script type="text/javascript">
 			function isMobile() {
