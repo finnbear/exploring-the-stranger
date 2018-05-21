@@ -35,6 +35,7 @@
 				left: 0;
 			}
 		</style>
+		<title>Exploring The Stranger</title>
 	</head>
 	<body>
 		<div class="parent">
