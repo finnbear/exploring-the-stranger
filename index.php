@@ -11,6 +11,9 @@
 		<link rel="stylesheet" href="./libraries/videojs-panorama.min.css">
 		<script src="./libraries/videojs-panorama.min.js"></script>
 		<style>
+			body {
+				background-color: #3D454D;
+			}
 			.parent {
 				padding: 6rem 25%;
 				margin: 0 auto;
@@ -36,6 +39,11 @@
 			}
 			.table {
 				margin: 0px;
+				background-color: #212529;
+				color: #EEEEEE;
+			}
+			td {
+				border-top: 0px solid #212529 !important;
 			}
 		</style>
 		<title>Exploring The Stranger</title>
@@ -50,7 +58,7 @@
 				</div>
 			</div>
 			<br>
-			<table class="table table-bordered">
+			<table class="table table-dark">
 				<tbody>
 					<tr>
 						<td colspan="2">
