@@ -53,7 +53,7 @@
 			<div class="player_wrapper">
 				<div class="player_container">
 					<video id="videojs-panorama-player" class="video-js vjs-default-skin" controls>
-						<source src="scenes/bullet.mp4" type="video/mp4">
+						<source src="scenes/bullets.mp4" type="video/mp4">
 					</video>
 				</div>
 			</div>
