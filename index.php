@@ -98,7 +98,7 @@
 				player.panorama({
 					clickToToggle: false,
 					clickAndDrag: true,
-					autoMobileOrientation: true,
+					autoMobileOrientation: isMobile(),
 					initFov: 100,
 					Notice: {
 						Enable: false
