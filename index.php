@@ -23,6 +23,8 @@ $currentScene = "bullet";
 if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 	$previousScenes = unserialize(base64_decode($_POST["previousScenes"]));
 	$currentScene = $_POST["scene"];
+
+	array_push($previousScenes, $currentScene);
 }
 
 ?>
@@ -105,7 +107,7 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 
 					if (count($previousScenes) > 0) {
 						echo('<tr><td><form action="." method="post">');
-						echo('<input type="hidden" name="previousScenes" value="' . base64_encode(serialize($currentScene)) . '">');
+						echo('<input type="hidden" name="previousScenes" value="' . base64_encode(serialize($previousScenes)) . '">');
 						echo('<input type="hidden" name="scene" value="' . array_pop($previousScenes) . '">');
 						echo('<button type="submit" class="btn btn-primary">Back</button>');
 						echo('</tr></td></form>');
