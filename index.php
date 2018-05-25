@@ -36,7 +36,7 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 		<link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./libraries/video-js.css">
 		<script src="./libraries/video.js"></script>
-		<script src="./three.js/build/three.min.js"></script>
+		<!--<script src="./three.js/build/three.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r76/three.js"></script>
 		<link rel="stylesheet" href="./libraries/videojs-panorama.min.css">
 		<script src="./libraries/videojs-panorama.min.js"></script>
@@ -82,8 +82,8 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 		<div class="parent">
 			<div class="player_wrapper">
 				<div class="player_container">
-					<video id="videojs-panorama-player" class="video-js vjs-default-skin" controls>
-						<source src="scenes/<?php echo($currentScene); ?>.mp4" type="video/mp4">
+					<video id="videojs-panorama-player" class="video-js vjs-default-skin" crossorigin="anonymous" controls>
+						<source src="https://interlakeinklings.com/exploring-the-stranger/scenes/<?php echo($currentScene); ?>.mp4" type="video/mp4">
 					</video>
 				</div>
 			</div>
