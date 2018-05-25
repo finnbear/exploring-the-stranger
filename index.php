@@ -81,7 +81,7 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 			<div class="player_wrapper">
 				<div class="player_container">
 					<video id="videojs-panorama-player" class="video-js vjs-default-skin" controls>
-						<source src="scenes/bullet.mp4" type="video/mp4">
+						<source src="scenes/<?php echo($currentScene); ?>.mp4" type="video/mp4">
 					</video>
 				</div>
 			</div>
@@ -102,16 +102,15 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 						echo('<button type="submit" class="btn btn-primary">' . $scenes[$choice]->description . '</button>');
 						echo('</form></td></tr>');
 					}
+
+					if (count($previousScenes) > 0) {
+						echo('<tr><td><form action="." method="post">');
+						echo('<input type="hidden" name="previousScenes" value="' . base64_encode(serialize($currentScene)) . '">');
+						echo('<input type="hidden" name="scene" value="' . array_pop($previousScenes) . '">');
+						echo('<button type="submit" class="btn btn-primary">Back</button>');
+						echo('</tr></td></form>');
+					}
 					?>
-					<tr>
-						<td>
-							<form action="." method="post">
-								<input type="hidden" name="previousScenes" value="<?php echo(base64_encode(serialize($currentScene))); ?>">
-								<input type="hidden" name="scene" value="<?php echo(array_pop($previousScenes)); ?>">
-								<button type="submit" class="btn btn-primary">Back</button>
-							</form>
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
