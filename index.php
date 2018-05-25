@@ -1,3 +1,31 @@
+<?php
+class Scene {
+	public $title;
+	public $description;
+	public $hint;
+	public $choices;
+
+	public function __construct($title, $description, $hint, $choices) {
+		$this->title = $title;
+		$this->description = $description;
+		$this->hint = $hint;
+		$this->choices = $choices;
+	}
+}
+
+$scenes = array();
+
+$scenes["bullet"] = new Scene("Meursault pulls the trigger", "Watch as Meursault pulls the trigger", "As the bullet passes, turn around 180 degrees.", array("bullets"));
+$scenes["bullets"] = new Scene("The other 4 shots", "See the other 4 shots", "Look up.", array());
+
+$currentScene = "bullet";
+
+if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
+	$previousScenes = unserialize(base64_decode($_POST["previousScenes"]));
+	$currentScene = $_POST["scene"];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -62,17 +90,26 @@
 				<tbody>
 					<tr>
 						<td colspan="2">
-							<h1>Bullet Scene</h1>
+							<h1><?php echo($scenes[$currentScene]->title); ?></h1>
 						</td>
 					<tr>
-						<td colspan="2">Use the mouse to look around</td>
+						<td colspan="2"><?php echo($scenes[$currentScene]->hint); ?></td>
 					</tr>
+					<?php
+					foreach ($scenes[$currentScene]->choices as $choice) {
+						echo('<tr><td><form action="." method="post">');
+						echo('<input type="hidden" name="scene" value="' . $choice . '">');
+						echo('<button type="submit" class="btn btn-primary">' . $scenes[$choice]->description . '</button>');
+						echo('</form></td></tr>');
+					}
+					?>
 					<tr>
 						<td>
-							<button class="btn btn-primary">Back</button>
-						</td>
-						<td>
-							<button class="btn btn-primary">Next</button>
+							<form action="." method="post">
+								<input type="hidden" name="previousScenes" value="<?php echo(base64_encode(serialize($currentScene))); ?>">
+								<input type="hidden" name="scene" value="<?php echo(array_pop($previousScenes)); ?>">
+								<button type="submit" class="btn btn-primary">Back</button>
+							</form>
 						</td>
 					</tr>
 				</tbody>
