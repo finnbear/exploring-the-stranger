@@ -19,7 +19,7 @@ $scenes["beach"] = new Scene("Unbearable glare at the beach", "Go to the beach",
 $scenes["bullet"] = new Scene("Meursault pulls the trigger", "Watch as Meursault pulls the trigger", "As the bullet passes, turn around 180 degrees.", array("bullets"));
 $scenes["bullets"] = new Scene("The other 4 shots", "See the other 4 shots", "Look up.", array());
 
-$currentScene = "bullet";
+$currentScene = "beach";
 
 if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 	$previousScenes = unserialize(base64_decode($_POST["previousScenes"]));
