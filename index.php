@@ -3,21 +3,23 @@ class Scene {
 	public $title;
 	public $description;
 	public $hint;
+	public $credits;
 	public $choices;
 
-	public function __construct($title, $description, $hint, $choices) {
+	public function __construct($title, $description, $hint, $credits, $choices) {
 		$this->title = $title;
 		$this->description = $description;
 		$this->hint = $hint;
+		$this->credits = $credits;
 		$this->choices = $choices;
 	}
 }
 
 $scenes = array();
 
-$scenes["beach"] = new Scene("Unbearable glare at the beach", "Go to the beach", "Take a look around in 360&#176;.", array("bullet"));
-$scenes["bullet"] = new Scene("Meursault pulls the trigger", "Watch as Meursault pulls the trigger", "As the bullet passes, turn around 180 degrees.", array("bullets"));
-$scenes["bullets"] = new Scene("The other 4 shots", "See the other 4 shots", "Look up.", array());
+$scenes["beach"] = new Scene("Unbearable glare at the beach", "Go to the beach", "Take a look around in 360&#176;.", array("https://www.youtube.com/watch?v=7F-F8-qHmq0"), array("bullet"));
+$scenes["bullet"] = new Scene("Meursault pulls the trigger", "Watch as Meursault pulls the trigger", "As the bullet passes, turn around 180 degrees.", array("https://www.youtube.com/watch?v=DJrBNW7FL9Q"), array("bullets"));
+$scenes["bullets"] = new Scene("The other 4 shots", "See the other 4 shots", "Look up.", array(), array());
 
 $currentScene = "beach";
 
@@ -34,7 +36,9 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 	<head>
 		<meta http-equiv="Content-Type" content="texthtml; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
+		<script src="./bootstrap/dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="./libraries/video-js.css">
 		<script src="./libraries/video.js"></script>
 		<!--<script src="./three.js/build/three.min.js"></script>-->
@@ -92,11 +96,11 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 			<table class="table table-dark">
 				<tbody>
 					<tr>
-						<td colspan="2">
+						<td>
 							<h1><?php echo($scenes[$currentScene]->title); ?></h1>
 						</td>
 					<tr>
-						<td colspan="2"><?php echo($scenes[$currentScene]->hint); ?></td>
+						<td><?php echo($scenes[$currentScene]->hint); ?></td>
 					</tr>
 					<?php
 					foreach ($scenes[$currentScene]->choices as $choice) {
@@ -113,9 +117,35 @@ if ($_POST["scene"] && array_key_exists($_POST["scene"], $scenes)) {
 						echo('<button type="submit" class="btn btn-primary">Back</button>');
 						echo('</tr></td></form>');
 					}
+
+					if (count($scenes[$currentScene]->credits) > 0) {
+						echo('<tr><td>');
+						echo('<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sources" aria-expanded="false" aria-controls="sources">Show credits below</button>');
+						echo('</td></tr>');
+					}
 					?>
 				</tbody>
 			</table>
+		</div>
+		<div class="collapse" id="sources">
+			<div class="card card-body">
+				<h3>Credits</h3>
+				<p>
+				<?php
+					$numCredits = count($scenes[$currentScene]->credits);
+					$i = 0;
+					foreach ($scenes[$currentScene]->credits as $credit) {
+						if ($numCredits == 1) {
+							echo($credit);
+						} else if (++$i == $numCredits) {
+							echo('and ' + $credit);
+						} else {
+							echo($credit . ', ');
+						}
+					}
+				?>
+				</p>
+			</div>
 		</div>
 		<script type="text/javascript">
 			function isMobile() {
