@@ -1,0 +1,34 @@
+body {
+	background-color: #3D454D;
+}
+.parent {
+	padding: 6rem 25%;
+	margin: 0 auto;
+	text-align: center;
+}
+.player_wrapper {
+	position: relative;
+	max-width: 960px;
+	width: 100%;
+}
+body.vjs-full-window .player_wrapper {
+	position: static;
+}
+.player_container {
+	padding-top: 56.25%;
+}
+#videojs-panorama-player {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.table {
+	margin: 0px;
+	background-color: #212529;
+	color: #EEEEEE;
+}
+td {
+	border-top: 0px solid #212529 !important;
+}
