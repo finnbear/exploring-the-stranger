@@ -1,4 +1,8 @@
 <?php
+$server = ".";
+
+include 'server.php';
+
 class Scene {
 	public $title;
 	public $description;
@@ -60,7 +64,7 @@ array_push($previousScenes, $currentScene);
 			<div class="player_wrapper">
 				<div class="player_container">
 					<video id="videojs-panorama-player" class="video-js vjs-default-skin" crossorigin="anonymous" controls>
-						<source src="https://interlakeinklings.com/exploring-the-stranger/scenes/<?php echo($currentScene); ?>.mp4" type="video/mp4">
+						<source src="<?php echo($server); ?>/exploring-the-stranger/scenes/<?php echo($currentScene); ?>.mp4" type="video/mp4">
 					</video>
 				</div>
 			</div>
